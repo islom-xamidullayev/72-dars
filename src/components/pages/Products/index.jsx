@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../store';
 
-function Products({ addToCart }) {
+function Products() {
   const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch('http://localhost:5000/products') // Mahsulotlarni olish
+    fetch('http://localhost:5000/products')
       .then((res) => res.json())
       .then((data) => setProducts(data.data))
       .catch((error) => console.error('API xatosi:', error));
@@ -22,13 +25,15 @@ function Products({ addToCart }) {
             alt={product.name}
             className="w-64 h-64 object-cover mb-4 rounded"
           />
-          <h3 className="text-[24px] items-center   text-center font-medium text-gray-800 mb-2">{product.name}</h3>
+          <h3 className="text-[24px] text-center font-medium text-gray-800 mb-2">
+            {product.name}
+          </h3>
           <div className="flex justify-center gap-[100px] items-center w-full">
             <p className="bg-yellow-300 text-gray-800 text-base font-medium px-2 py-1 rounded">
               ${product.price}
             </p>
             <button
-              onClick={() => addToCart(product)}
+              onClick={() => dispatch(addToCart(product))}
               className="text-2xl text-gray-600 hover:text-gray-800 transition"
             >
               🛒
