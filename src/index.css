@@ -2,3 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.container {
+    width: 1200px;
+    margin: auto;
+    
+}
+
+.bnt {
+    transition: 1s;
+}
+
+.bnt:hover {
+    background-color: black;
+    color: white;
+    transition: 1s;
+}
